@@ -44,13 +44,16 @@ const InputButton = styled.button`
   }
 `;
 
-// create an array for the keys to be included in the buttons
-// const keys = ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"];
-
-// create an object in which to include an array for the keys and an array for the matching audio elements 
+/* create an object used for the buttons, their text and audio elements
+- keys holds an array of the letters to be included in the buttons
+- audioPrefix and audioSuffix contain the section of the URL that do not change for the different sounds
+- audioURL holds an array with the portion of the URL that does change
+*/
 const buttons = {
   keys: ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"],
-  audio: []
+  audioPrefix: "http://sampleswap.org/samples-ghost/%20MAY%202014%20LATEST%20ADDITIONS/DRUMS%20(FULL%20KITS)/Japanese%20Drums/",
+  audioURL: ["63[kb]daibyoshi-A1", "71[kb]daibyoshi-A3", "256[kb]hirado-A1", "88[kb]miyadaiko-A1", "41[kb]miyadaiko-C1", "55[kb]miyadaiko-D1", "8[kb]mokugyo-A1", "10[kb]mokusho-A1", "256[kb]okedo-A1"],
+  audioSuffix: ".wav.mp3"
 }
 
 /*
@@ -59,14 +62,16 @@ the button component is created through the styling library
 */
 const AppInput = (props) =>  {
   // loop through the array of keys to include one copy of the styled component for each letter
-  // render this collection of elements
-  const InputButtons = buttons.keys.map(key => 
+  // in each button include the text hold by the key value 
+  // in each button include an audio element, described by the different URL
+  const InputButtons = buttons.keys.map((key, index) => 
     <InputButton 
       className="drum-pad"
       id={key}
       key={key} 
       onClick={props.handleInput}>
         {key}
+        <audio src={buttons.audioPrefix + buttons.audioURL[index] + buttons.audioSuffix}></audio>
     </InputButton>
   );
   return(
@@ -74,6 +79,7 @@ const AppInput = (props) =>  {
       {InputButtons}
     </div>
   );
+  
 }
 
 export default AppInput;

@@ -20,9 +20,15 @@ class App extends Component {
   }
 
   // handleInput receives a click event as argument and updates the state with the text value of the interacting button
+  // additionally, it plays the audio for the connected button
   handleInput(e) {
+    let target = e.target;
+    let output = target.textContent;
+
+    this.playAudio(target);
+
     this.setState({
-      output: e.target.textContent
+      output: output
     });
   }
 
@@ -49,10 +55,10 @@ class App extends Component {
       case 'X':
       case 'C':
         // if the key pressed matches one of the chosen one, update the state with the value of the key pressed
-        // additionally call a function which is used to emulate the active pseudo-selectors without needing to actually interact with the button on the screen (by using the keyboard) 
         this.setState({
           output: keyCode
         });
+        // call a function which is used to emulate the press of the button (by including the functionality of the active pseudo-selectors and  playing the audio of the respective button)
         this.pressButton(keyCode);
         break;
       default:
@@ -71,17 +77,31 @@ class App extends Component {
   pressButton(value) {
     // target the exact button with a text matching the value of the key pressed
     // add a class of active and remove it briefly afterwards with a timeout
+    // while adding the class, call also the function to play the audio for the respective button
     let buttons = document.querySelectorAll("button");
     buttons.forEach((button) => {
       let textButton = button.textContent;
       if(textButton === value) {
         button.classList.add("active");
+        this.playAudio(button);
         let timeoutID = setTimeout(() => {
           button.classList.remove("active");
           clearTimeout(timeoutID);
         }, 150);
       }
     });
+  }
+
+  // create a function which plays the audio nested in the element passed as argument 
+  playAudio(element) {
+    let audio = element.querySelector("audio");
+    // if the audio is currently being played, stop it (pause it and reset its progress)
+    if(!audio.paused) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+    // play the audio
+    audio.play();
   }
 
   
@@ -101,6 +121,7 @@ class App extends Component {
       </div>
     );
   }
+  
 }
 
 export default App;
