@@ -8,29 +8,36 @@ import styled from 'styled-components';
 // create a button with styled component; this button will be included for all nine clickable elements
 // define hover, focus and active states as well as an active class, added and removed whenever the keyboard is used instead of a cursor
 const InputButton = styled.button`
+  /* button style */
   border: none;
   border-radius: 8px;
   background: var(--color-text);
   opacity: 0.7;
   box-shadow: 0 1px 5px var(--color-text);
+  /* text style */
   color: var(--color-subtext);
   font-size: 1.15rem;
   text-transform: uppercase;
   font-weight: bold;
+  /* position the text in the bottom right corner */
   text-align: right;
   line-height: 130px;
   padding: 1rem;
+  /* transition for the hover and focus states */
   transition: all 0.15s ease-out;
 
   &:hover {    
+    /* on hover remove transparency and include the darker tone of the color for the buttons' text */
     opacity: 1;
     color: var(--color-subtext-focus);
   }
   &:focus {
+    /* when focused reduce transparency and increase the roundness of the box */
     opacity: 0.9;
     border-radius: 15px;
   }
   &:active, &.active {
+    /* when active, and with the class of active (included in response to a keydown event), remove transparency, pick the dark color of the text and sligtly increase the scale */
     opacity: 1;
     color: var(--color-subtext-focus);
     transform: scale(1.1);
