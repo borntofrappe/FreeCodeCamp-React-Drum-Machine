@@ -2,7 +2,7 @@ _Notice_
 
 The project is currently being developed through the `create-react-app` utility. That being said, once all the components are defined and the functionalities of the application are included, the project will be also published on codepen.
 
-<!-- Link to the working pen right [here]() -->
+Link to the working pen right [here](https://codepen.io/borntofrappe/full/BPOWxo/)
 
 ## Preface
 
@@ -65,3 +65,48 @@ As briefly introduced in the preface, the list of user stories is quite concise:
 - [x] the audio clip and the pad as a whole needs to function in response to a click event as well as a key stroke, when pressing a key matching one of the values;
 
 - [x] beside playing the audio, a string describing the associated audio clip should be included in the `#display` element.
+
+## Closing Thoughts
+
+As I needed to include the `audio` elements, I decided to remove the array nesting the different values for the buttons and in its place I decided to define an object. An object defining the original array and the URL of the different audio elements. This allows to easily include the audio clips exactly where they ought to be declared, nested in each button.
+
+```JSX
+const buttons = {
+  keys: ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"],
+  audioPrefix: "http://sampleswap.org/samples-ghost/%20MAY%202014%20LATEST%20ADDITIONS/DRUMS%20(FULL%20KITS)/Japanese%20Drums/",
+  audioURL: ["63[kb]daibyoshi-A1", "71[kb]daibyoshi-A3", "256[kb]hirado-A1", "88[kb]miyadaiko-A1", "41[kb]miyadaiko-C1", "55[kb]miyadaiko-D1", "8[kb]mokugyo-A1", "10[kb]mokusho-A1", "256[kb]okedo-A1"],
+  audioSuffix: ".wav.mp3"
+}
+```
+
+The URL is actually split in three as to include two strings for the sections of the URL which never change and isolate in an array the strings responsible for the different clips.
+
+Once the audio clips are included, alongside the classes and identifiers required by the user stories:
+
+```JSX
+const InputButtons = buttons.keys.map((key, index) => 
+  <InputButton 
+    className="drum-pad"
+    id={key}
+    key={key} 
+    onClick={props.handleInput}>
+      {key}
+      <audio 
+        className="clip"
+        id={key}
+        src={buttons.audioPrefix + buttons.audioURL[index] + buttons.audioSuffix}>
+      </audio>
+  </InputButton>
+);
+```
+
+It is a matter of playing the audio when the buttons are clicked/pressed. I decided to here include a function which receives as argument the pressed/clicked button, and plays the nested audio element.
+
+```JSX
+playAudio(element) {
+  let audio = element.querySelector("audio");
+  audio.play();
+}
+```
+
+This allows me to easily include the function both in response to a `click` event and a `keydown` event, simply by passing the interacting button.
