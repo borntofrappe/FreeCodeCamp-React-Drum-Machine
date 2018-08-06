@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+/*
+define the font and colors used in the project
+- lato for text
+- blue for the background 
+- red for the background's circle and as accent color
+- white for text and button background
+- blue-light for button text
+*/
+:root {
+  --font: 'Lato', sans-serif;
+  --color-background: #0a1e50;
+  --color-accent: #dd1f19;
+  --color-text: #f0f0f0;
+  --color-subtext: #8295c2;
+  --color-subtext-focus: #5069a3;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: var(--font);
+  color: var(--color-text);
+  background: radial-gradient(circle at 50% 50%, var(--color-accent) 30%, transparent 30.1%), #0a1e50;
+  background-repeat: no-repeat;
+}
