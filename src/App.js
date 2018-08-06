@@ -6,25 +6,37 @@ import AppInput from './AppInput';
 
 // in a stateful component render the components responsible for the application and manage its state
 class App extends Component {
+  // in the constructor include the state as an empty string, which is populated with the value of the pressed button, to be included in the output area
+  // bind also the methods which are used to update the state and passed as properties to child components
   constructor(props) {
     super(props);
     this.state = {
       output: ''
     };
+    // handle input called in answer to a click event on one of the clickable elements
     this.handleInput = this.handleInput.bind(this);
+    // handle stroke called whenever a key among one of the chosen one is pressed
     this.handleStroke = this.handleStroke.bind(this);
   }
 
+  // handleInput receives a click event as argument and updates the state with the text value of the interacting button
   handleInput(e) {
     this.setState({
       output: e.target.textContent
     });
   }
 
+  // add an event listener on the entire window once the components are included in the page
+  // listen for a keydown event, at which point call a function to update the state
   componentDidMount() {
     window.addEventListener("keydown", this.handleStroke);
   }
+
+  // create a function which updates the state if the key pressed matches one of the chosen one
   handleStroke(e) {
+    // e.keycode is an integer
+    // String.fromChartCode() returns the character matching the code
+    // toUpperCase to have the elements assuredly be uppercase-d
     let keyCode = String.fromCharCode(e.keyCode).toUpperCase();
     switch(keyCode) {
       case 'Q':
@@ -36,12 +48,15 @@ class App extends Component {
       case 'Z':
       case 'X':
       case 'C':
+        // if the key pressed matches one of the chosen one, update the state with the value of the key pressed
+        // additionally call a function which is used to emulate the active pseudo-selectors without needing to actually interact with the button on the screen (by using the keyboard) 
         this.setState({
           output: keyCode
         });
         this.pressButton(keyCode);
         break;
       default:
+        // by default set the output to be blank
         this.setState({
           output: ''
         });
@@ -49,7 +64,13 @@ class App extends Component {
     }
   }
 
+  /*
+  create a function which is used to emulate the active state on the buttons 
+  this function is called in response to a keydown event with a value matching one of the selected letters
+  */
   pressButton(value) {
+    // target the exact button with a text matching the value of the key pressed
+    // add a class of active and remove it briefly afterwards with a timeout
     let buttons = document.querySelectorAll("button");
     buttons.forEach((button) => {
       let textButton = button.textContent;
@@ -66,9 +87,9 @@ class App extends Component {
   
   /* render 
   - an area in which to display the clickable element that was pressed
-    include this value in an _output_ property
+    include the value to be showcased as an _output_ property
   - an area in which the clickable elements are included
-  
+    include the function which is called to update the state, and added for each button in response to a click event   
   */
   render() {
     return (

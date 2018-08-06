@@ -1,15 +1,12 @@
 import React from 'react';
 import './css/AppInput.css';
 
-// import the styled object from the styled components library
+// import the styled object from the styled-components library
 import styled from 'styled-components';
 
-/*
-render a single div in which to nest nine clickable elements, buttons for the following letters: [Q W E A S D Z X C]
-each button can be included with a separate component 
-*/
 
-// create a styled component, used for each button
+// create a button with styled component; this button will be included for all nine clickable elements
+// define hover, focus and active states as well as an active class, added and removed whenever the keyboard is used instead of a cursor
 const InputButton = styled.button`
   border: none;
   border-radius: 8px;
@@ -49,9 +46,13 @@ const buttons = {
   audio: []
 }
 
-// loop through the array of keys to include one copy of the styled component for each letter
-// render this collection of elements
+/*
+render a single div in which to nest nine clickable elements, with the following letters: [Q W E A S D Z X C]
+the button component is created through the styling library
+*/
 const AppInput = (props) =>  {
+  // loop through the array of keys to include one copy of the styled component for each letter
+  // render this collection of elements
   const InputButtons = buttons.keys.map(key => 
     <InputButton 
       className="drum-pad"
