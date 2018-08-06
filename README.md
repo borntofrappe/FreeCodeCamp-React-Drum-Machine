@@ -52,16 +52,16 @@ const AppInput = (props) =>  {
 
 As briefly introduced in the preface, the list of user stories is quite concise:
 
-- [ ] there exist an container with `id="drum-machine`, containing all elements;
+- [x] there exist an container with `id="drum-machine`, containing all elements;
 
-- [ ] within the container there exist an element with `id="display"`;
+- [x] within the container there exist an element with `id="display"`;
 
-- [ ] within the same container there exist 9 clickable elements with `class="drum-pad"`, a unique id and inner text corresponding to the following keys: `["Q", "W", "E", "A", "S", "D", "Z", "X", "C"]`. In order;
+- [x] within the same container there exist 9 clickable elements with `class="drum-pad"`, a unique id and inner text corresponding to the following keys: `["Q", "W", "E", "A", "S", "D", "Z", "X", "C"]`. In order;
 
-- [ ] within each `.drum-pad` there exist an `<audio>` element which an `src` attribute leading toward an audio clip, with `class="clip"` and an `id` matching the inner text of the parent (`Q`, `W` and so on);
+- [x] within each `.drum-pad` there exist an `<audio>` element which an `src` attribute leading toward an audio clip, with `class="clip"` and an `id` matching the inner text of the parent (`Q`, `W` and so on);
 
-- [ ] upon clicking on a `.drum-pad`, the nested audio element should be played;
+- [x] upon clicking on a `.drum-pad`, the nested audio element should be played;
 
-- [ ] the audio clip and the pad as a whole needs to function in response to a click event as well as a key stroke, when pressing a key matching the values;
+- [x] the audio clip and the pad as a whole needs to function in response to a click event as well as a key stroke, when pressing a key matching one of the values;
 
-- [ ] beside playing the audio, a string describing the associated audio clip should be included in the `#display` element.
+- [x] beside playing the audio, a string describing the associated audio clip should be included in the `#display` element.

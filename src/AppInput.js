@@ -71,7 +71,11 @@ const AppInput = (props) =>  {
       key={key} 
       onClick={props.handleInput}>
         {key}
-        <audio src={buttons.audioPrefix + buttons.audioURL[index] + buttons.audioSuffix}></audio>
+        <audio 
+          className="clip"
+          id={key}
+          src={buttons.audioPrefix + buttons.audioURL[index] + buttons.audioSuffix}>
+        </audio>
     </InputButton>
   );
   return(
@@ -79,7 +83,7 @@ const AppInput = (props) =>  {
       {InputButtons}
     </div>
   );
-  
+
 }
 
 export default AppInput;
