@@ -41,11 +41,26 @@ const InputButton = styled.button`
 `;
 
 // create an array for the keys to be included in the buttons
-const keys = ["q", "w", "e", "a", "s", "d", "z", "x", "c"];
+// const keys = ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"];
+
+// create an object in which to include an array for the keys and an array for the matching audio elements 
+const buttons = {
+  keys: ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"],
+  audio: []
+}
+
 // loop through the array of keys to include one copy of the styled component for each letter
 // render this collection of elements
 const AppInput = (props) =>  {
-  const InputButtons = keys.map(key => <InputButton key={key} onClick={props.handleInput}>{key}</InputButton>);
+  const InputButtons = buttons.keys.map(key => 
+    <InputButton 
+      className="drum-pad"
+      id={key}
+      key={key} 
+      onClick={props.handleInput}>
+        {key}
+    </InputButton>
+  );
   return(
     <div className="AppInput">
       {InputButtons}

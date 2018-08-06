@@ -7,7 +7,7 @@ output passed as property from App.js and accessible under props.output
 */
 const AppOutput = (props) =>  {
   return(
-    <div className="AppOutput">
+    <div className="AppOutput" id="display">
       {props.output}
     </div>
   );

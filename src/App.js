@@ -13,7 +13,6 @@ class App extends Component {
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleStroke = this.handleStroke.bind(this);
-    // this.pressButton = this.pressButton.bind(this);
   }
 
   handleInput(e) {
@@ -26,17 +25,17 @@ class App extends Component {
     window.addEventListener("keydown", this.handleStroke);
   }
   handleStroke(e) {
-    let keyCode = String.fromCharCode(e.keyCode).toLowerCase();
+    let keyCode = String.fromCharCode(e.keyCode).toUpperCase();
     switch(keyCode) {
-      case 'q':
-      case 'w':
-      case 'e':
-      case 'a':
-      case 's':
-      case 'd':
-      case 'z':
-      case 'x':
-      case 'c':
+      case 'Q':
+      case 'W':
+      case 'E':
+      case 'A':
+      case 'S':
+      case 'D':
+      case 'Z':
+      case 'X':
+      case 'C':
         this.setState({
           output: keyCode
         });
@@ -73,7 +72,7 @@ class App extends Component {
   */
   render() {
     return (
-      <div className="App">
+      <div className="App" id="drum-machine">
 
         <AppOutput output={this.state.output}/>
         <AppInput handleInput={this.handleInput}/>
